@@ -10,7 +10,10 @@ class PDPWhiteboard extends PDPAuth{
     public function __construct($token = null) {
         $this->token = $token;
     }
-    
+    /**
+     * Creates a new whiteboard
+     * @return PDPJSON
+     */
     public function create(){
         $ob = PDPRequest::convertJSON($this->getAuth()->run(PDPRequest::create($this, PDPRequest::$ACTION_CREAT)));
         if($ob->whiteboard){
@@ -19,20 +22,34 @@ class PDPWhiteboard extends PDPAuth{
         return $ob;
     }
     
+    /**
+     * Convert the object data to array
+     * @return array
+     */
     public function extract(){
         return [
             "whiteboard_token"=>$this->token,
             "id_user"=>$this->users
         ];
     }
-    
+    /**
+     * Add an user id so you can associate with the whiteboard
+     * @param array|int|string $user_id
+     */
     public function addUser($user_id){
         $this->users[] = $user_id;
     }
-    
+    /**
+     * Associate the users added before with the whiteboard
+     * @return PDPJSON
+     */
     public function associate(){
         if(empty($this->users)){ 
             echo "You need to add users. Use \$whitboard->addUsers(\$id); and them run \$whiteboard->associate()";
+            return false;
+        }
+        if($this->token == null){
+            echo "You are missing the token, make sure you passed the token in the constructor.";
             return false;
         }
         $response = PDPRequest::convertJSON($this->getAuth()->run(PDPRequest::create($this, PDPRequest::$ACTION_ASSOCIATE)));
@@ -44,7 +61,10 @@ class PDPWhiteboard extends PDPAuth{
         $this->token = $data->token;
         return $this;
     }
-    
+    /**
+     * Get the token of the whiteboard
+     * @return string
+     */
     public function getToken(){
         return $this->token;
     }
@@ -58,10 +78,20 @@ class PDPWhiteboard extends PDPAuth{
         }
         return $whiteboard->fetchWithAnswer($response->getWhiteboard());
     }
-    
+    /**
+     * Retrives the last response.
+     * @return PDPJSON
+     */
     public static function lastResponse(){
         return self::$last_response;
     }
+    
+    /**
+     * Creates a url so you can use in the iframe.
+     * @param string $whiteboard_token
+     * @param string $user_token
+     * @return string
+     */
     
     public static function url($whiteboard_token, $user_token){
         $public_key = self::$i->public_key;

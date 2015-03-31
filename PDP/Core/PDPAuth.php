@@ -7,6 +7,9 @@ class PDPAuth{
      * @var string 
      */
     protected $key = null;
+    /**
+     * @var string
+     */
     protected $public_key = null;
     /**
      * 
@@ -21,6 +24,7 @@ class PDPAuth{
      * @var PDPAuth 
      */
     public static $i;
+    
     /**
      * 
      * @param string $private_key
@@ -30,11 +34,19 @@ class PDPAuth{
         self::$i = new PDPAuth($private_key,$public_key);
         return self::$i;
     }
-    
+
+    /**
+     * 
+     * @return string
+     */
     protected function run(PDPRequest $request){
         return $request->pushRequest($this->key);
     }
     
+    /**
+     * 
+     * @return PDPAuth
+     */
     protected function getAuth(){
         return self::$i;
     }
@@ -121,19 +133,31 @@ class PDPJSON{
         $this->whiteboard = isset($decode->whiteboard) ? $decode->whiteboard : $this->whiteboard;
         $this->message = $this->messagem;
     }
-    
+
+    /**
+     * @return boolean
+     */
     public function getStatus(){
         return $this->status;
     }
     
+    /**
+     * @return array|string
+     */
     public function getMessagem(){
         return $this->messagem;
     }
     
+    /**
+     * @return string|json
+     */
     public function getUser(){
         return $this->user;
     }
     
+    /**
+     * @return string|json
+     */
     public function getWhiteboard(){
         return $this->whiteboard;
     }

@@ -12,7 +12,7 @@ class PDPUser extends PDPAuth{
         $this->photo = $photo;
     }
     /**
-     * 
+     * Creates a user.
      * @return PDPJSON
      */
     public function create(){
@@ -22,7 +22,11 @@ class PDPUser extends PDPAuth{
         }
         return $ob;
     }
-    
+
+    /**
+     * Convert the object data to array
+     * @return array
+     */
     public function extract(){
         return [
             "id_user"=>$this->id,
@@ -31,6 +35,10 @@ class PDPUser extends PDPAuth{
         ];
     }
 
+    /**
+     * 
+     * @return PDPUser
+     */
     public function fetchWithAnswer($json){
         if(!is_object($json)){
             $data = json_decode($json);
@@ -44,6 +52,11 @@ class PDPUser extends PDPAuth{
         return $this;
     }
 
+    /**
+     * Gets a user by id, or array of ids.
+     * @param array|int|string $user_id
+     * @return boolean|PDPUser|array
+     */
     public static function get($user_id){
         $user = new PDPUser($user_id);
         $response = PDPRequest::convertJSON(self::$i->run(PDPRequest::create($user, PDPRequest::$ACTION_GET)));
@@ -62,6 +75,10 @@ class PDPUser extends PDPAuth{
         }
     }
     
+    /**
+     * Get the user's token
+     * @return string
+     */
     public function getToken(){
         return $this->token;
     }
