@@ -92,7 +92,6 @@ class PDPWhiteboard extends PDPAuth{
      * @param string $user_token
      * @return string
      */
-    
     public static function url($whiteboard_token, $user_token){
         $public_key = self::$i->public_key;
         $array_url = [

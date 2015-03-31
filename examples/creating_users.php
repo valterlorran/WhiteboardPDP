@@ -9,8 +9,6 @@ include 'layout/layout.php';
  */
 $private_key = "MY_PRIVATE_KEY";
 $public_key = "MY_PUBLIC_KEY";
-$private_key = "abc";
-$public_key = "JEpf1MnXqMqdEGeLYlyd";
 PDPAuth::register($private_key, $public_key);
 //============================================================================//
 //USERS
@@ -62,7 +60,7 @@ $token = $whiteboard->getToken();
 /**
  * to retrieve a whiteboard just use the token
  */
-$whiteboard_response = ( new PDPWhiteboard())->get("AOhhCTGGIL4PpNxzPQKe0xscD0t48aw5AQzx9qUT");
+$whiteboard_response = ( new PDPWhiteboard())->get($token);
 if($whiteboard_response !== false){
     
 }else{
