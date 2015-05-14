@@ -2,14 +2,30 @@
 
 namespace PDP\Core;
 class PDPWhiteboard extends PDPAuth{
+    public static $TYPE_1_TO_1 = 1;
+    public static $TYPE_1_TO_N = 2;
     private $token;
+    private $type;
     private $users = [];
+    private $configurations = [];
     
     private static $last_response = null;
     
     public function __construct($token = null) {
         $this->token = $token;
+        $this->type = self::$TYPE_1_TO_1;
     }
+    /**
+     * Set the whiteboard's type.
+     */
+    public function setType($type){
+        $this->type = $type;
+    }
+
+    public function setConfiguration($conf,$value){
+        $this->configurations[$conf] = $value;
+    }
+
     /**
      * Creates a new whiteboard
      * @return PDPJSON
@@ -29,12 +45,14 @@ class PDPWhiteboard extends PDPAuth{
     public function extract(){
         return [
             "whiteboard_token"=>$this->token,
-            "id_user"=>$this->users
+            "id_user"=>$this->users,
+            "type"=>$this->type
         ];
     }
     /**
      * Add an user id so you can associate with the whiteboard
      * @param array|int|string $user_id
+     * @param array
      */
     public function addUser($user_id){
         $this->users[] = $user_id;

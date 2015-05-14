@@ -7,8 +7,8 @@ include 'layout/layout.php';
 /**
  * First you'll need to register your key.
  */
-$private_key = "MY_PRIVATE_KEY";
-$public_key = "MY_PUBLIC_KEY";
+$private_key = "abc";
+$public_key = "JEpf1MnXqMqdEGeLYlyd";
 PDPAuth::register($private_key, $public_key);
 //============================================================================//
 //USERS
@@ -18,7 +18,7 @@ PDPAuth::register($private_key, $public_key);
  * First instantate the class PDPUser passing the user's id(the identification
  * that you use), name and photo(optional).
  */
-$user = new PDPUser(10, "Valter L.", NULL);
+$user = new PDPUser(10132, "Valter L.", NULL);
 //Now user the method create() to create a new user.
 $response = $user->create();
 /**
@@ -53,6 +53,8 @@ $user_token = $user->getToken();
  * Here some examples how to do it.
  */
 $whiteboard = new PDPWhiteboard();
+//[optional] sets the whiteboard's type. 1 to 1(default) or 1 to many.
+$whiteboard->setType(PDPWhiteboard::$TYPE_1_TO_1);
 //creates the whiteboard and insert the token into the object
 $response = $whiteboard->create();
 //You need store the token to be used later
