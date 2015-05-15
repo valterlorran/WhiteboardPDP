@@ -1,5 +1,5 @@
 <?php
-namespace PDP\Core;
+namespace WhiteboardPDP;
 class PDPUser extends PDPAuth{
     private $id;
     private $name;

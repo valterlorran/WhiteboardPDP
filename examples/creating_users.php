@@ -1,8 +1,8 @@
 <?php
-use PDP\Core\PDPUser;
-use PDP\Core\PDPAuth;
-use PDP\Core\PDPWhiteboard;
-require __DIR__."/../PDP/autoload.php";
+use WhiteboardPDP\PDPUser;
+use WhiteboardPDP\PDPAuth;
+use WhiteboardPDP\PDPWhiteboard;
+require __DIR__."/../autoload.php";
 include 'layout/layout.php';
 /**
  * First you'll need to register your key.

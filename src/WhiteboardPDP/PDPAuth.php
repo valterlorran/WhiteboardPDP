@@ -1,5 +1,5 @@
 <?php
-namespace PDP\Core;
+namespace WhiteboardPDP;
 define('PDP_API_PATH', "http://localhost/sitenovo/public/lousa/");
 class PDPAuth{
     /**
@@ -62,7 +62,7 @@ class PDPRequest{
     public static $ACTION_ASSOCIATE = 'associate';
     public function __construct($instance, $request_type){
         $this->instance = $instance;
-        if(get_class($this->instance) != 'PDP\Core\PDPUser' && get_class($this->instance) != 'PDP\Core\PDPWhiteboard'){
+        if(get_class($this->instance) != 'WhiteboardPDP\PDPUser' && get_class($this->instance) != 'WhiteboardPDP\PDPWhiteboard'){
             throw new \Exception("\$instance must be PDPUser or PDPWhiteboard");
         }
         $this->action = self::createRequestType($instance, $request_type);
@@ -98,10 +98,10 @@ class PDPRequest{
     
     public static function createRequestType($class, $action){
         $c = null;
-        if(get_class($class) == 'PDP\Core\PDPUser'){
+        if(get_class($class) == 'WhiteboardPDP\PDPUser'){
             $c = 'user';
         }
-        if(get_class($class) == 'PDP\Core\PDPWhiteboard'){
+        if(get_class($class) == 'WhiteboardPDP\PDPWhiteboard'){
             $c = 'whiteboard';
         }
         if(is_null($c)){

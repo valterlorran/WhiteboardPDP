@@ -1,6 +1,6 @@
 <?php
 
-namespace PDP\Core;
+namespace WhiteboardPDP;
 class PDPWhiteboard extends PDPAuth{
     public static $TYPE_1_TO_1 = 1;
     public static $TYPE_1_TO_N = 2;
