@@ -1,6 +1,6 @@
 <?php
 namespace WhiteboardPDP;
-define('PDP_API_PATH', "http://localhost/sitenovo/public/lousa/");
+define('PDP_API_PATH', "http://www.professoresdeplantao.com.br/lousa/");
 class PDPAuth{
     /**
      * Holds the app private key
