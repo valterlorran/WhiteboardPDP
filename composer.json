@@ -15,6 +15,5 @@
             "WhiteboardPDP\\": "src/WhiteboardPDP"
         }
     },
-    },
     "minimum-stability": "dev"
 }
