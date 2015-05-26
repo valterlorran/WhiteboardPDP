@@ -61,7 +61,7 @@ class PDPUser extends PDPAuth{
         $user = new PDPUser($user_id);
         $response = PDPRequest::convertJSON(self::$i->run(PDPRequest::create($user, PDPRequest::$ACTION_GET)));
         if(!$response->getStatus()){
-            echo join('<br />',$response->message);
+            // echo join('<br />',$response->message);
             return false;
         }
         $response_user_json = json_decode($response->getUser());
